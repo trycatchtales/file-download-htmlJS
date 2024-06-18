@@ -152,6 +152,6 @@ Feel free to fork the repository and make your own enhancements. Pull requests a
 
 ### Contact
 
-Your Name - [@trycatchtales]
+Instagram , YouTube - [@trycatchtales]
 
 Project Link: [https://github.com/yourusername/file-download-progress-bar](https://github.com/trycatchtales/file-download-htmlJS)
