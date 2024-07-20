@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download File with Enhanced Progress Design</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+  }
+
+  .progress-container {
+    width: 50%;
+    background-color: #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden; /* Ensures the inner bar stays within the rounded corners */
+  }
+
+  .progress-bar {
+    width: 0%;
+    height: 30px;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    transition: width 1s ease-in-out;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+
+<button onclick="startDownload('sample.txt')">Download File</button>
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar">0%</div>
+</div>
+<script>
+function startDownload(filename) {
+  const progressBar = document.getElementById('progressBar');
+  let progress = 0;
+  const interval = setInterval(() => {
+    if (progress < 100) {
+      progress += 10;
+      progressBar.style.width = `${progress}%`;
+      progressBar.textContent = `${progress}%`;
+    } else {
+      clearInterval(interval);
+      const a = document.createElement('a');
+      a.href = filename;a.download = filename;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(() => {
+        progressBar.style.width = '0%';
+        progressBar.textContent = '0%';
+      }, 2000);
+    }
+  }, 1000);
+}
+
+</script>
+
+</body>
+</html>
